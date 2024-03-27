@@ -1,21 +1,46 @@
 import React from "react";
+import EditComp from "./EditComp";
 
-const TodoComp = ({ task, deleteHandler, updateHandler }) => {
+const TodoComp = ({
+  task,
+  deleteHandler,
+  updateHandler,
+  editHandler,
+  completeEdit,
+}) => {
   return (
     <div className="todo">
-      <div>
-        <h4>{task?.title}</h4>
-        <p>{task?.description}</p>
-      </div>
-      <div>
-        <input
-          onChange={() => updateHandler(task._id)}
-          type="checkbox"
-          checked={task.isCompleted}
+      {task.isEdit ? (
+        <EditComp
+          title={task.title}
+          description={task.description}
+          id={task._id}
+          completeEdit={completeEdit}
         />
-        <button onClick={() => deleteHandler(task._id)} className="btn">
-          Delete
-        </button>
+      ) : (
+        <div>
+          <h4>{task?.title}</h4>
+          <p>{task?.description}</p>
+        </div>
+      )}
+      <div>
+        {!task.isEdit && (
+          <input
+            onChange={() => updateHandler(task._id)}
+            type="checkbox"
+            checked={task.isCompleted}
+          />
+        )}
+        {!task.isEdit && (
+          <button onClick={() => deleteHandler(task._id)} className="btn">
+            Delete
+          </button>
+        )}
+        {!task.isEdit && (
+          <button onClick={() => editHandler(task._id)} className="btn">
+            Edit
+          </button>
+        )}
       </div>
     </div>
   );

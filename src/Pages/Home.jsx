@@ -13,14 +13,49 @@ const Home = () => {
   const [tasks, setTasks] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
+  const editHandler = async (id) => {
+    try {
+      await axios.put(
+        `${serverUrl}/task/edit/${id}`,
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+      toast.success("task edit ready!");
+      setRefresh((prev) => !prev);
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
+
+  const completeEdit = async (title, description, id) => {
+    try {
+      await axios.put(
+        `${serverUrl}/task/complete/${id}`,
+        {
+          title,
+          description,
+        },
+        {
+          withCredentials: true,
+        },
+      );
+      toast.success("task updated!");
+      setRefresh((prev) => !prev);
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
+
   const updateHandler = async (id) => {
     try {
-      const { data } = await axios.put(
+      await axios.put(
         `${serverUrl}/task/${id}`,
         {},
         {
           withCredentials: true,
-        }
+        },
       );
       toast.success("Task Updated");
       setRefresh((prev) => !prev);
@@ -56,7 +91,7 @@ const Home = () => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       toast.success(data.message);
       setLoading(false);
@@ -108,8 +143,10 @@ const Home = () => {
       <section className="todosContainer">
         {tasks?.map((task) => (
           <TodoComp
+            editHandler={editHandler}
             updateHandler={updateHandler}
             deleteHandler={deleteHandler}
+            completeEdit={completeEdit}
             key={task._id}
             task={task}
           />
