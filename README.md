@@ -1,8 +1,27 @@
-# React + Vite
+# Todo Crud Mern App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech Stack
 
-Currently, two official plugins are available:
+- Library :- ReactJS
+- IDE :- vscode, neovim
+- Backend: MongoDB, Express,
+- JWT Token:jsonwebtoken
+- Password Hasing: Bcrypt
+- CORS: for cors policy & access
+- CSS :- Vanilla CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### View the live Site here <ins>_[Live Site](https://todo-app-backend-6packs.vercel.app)_</ins>
+
+## How UI looks like
+
+### Home Page
+
+![Hero Section](./public/home.png)
+
+### Login Page
+
+![About Section](./public/login.png)
+
+### SignUp Page
+
+![Projects Section](./public/signup.png)
